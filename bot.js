@@ -32,7 +32,7 @@ const client = new Client({
     await mongoose.connect(dbkey);
     console.log('✔ Connected to DB.');
     
-    
+    // Read all the files in the commands folder
     eventHandler(client);
     client.login(token);
     

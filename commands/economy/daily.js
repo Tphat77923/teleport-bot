@@ -45,7 +45,6 @@ module.exports = {
         user = new User({
           ...query,
           lastDaily: new Date(),
-          lastWork: 0,
         });
       }
 
