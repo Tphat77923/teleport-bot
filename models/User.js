@@ -35,7 +35,17 @@ const userSchema = new Schema({
     reqired: true,
     default: 0,
   },
+  lastfish:{
+    type: Date,
+    reqired: true,
+    default: 0,
+  },
   lastRoulette: {
+    type: Date,
+    reqired: true,
+    default: 0,
+  },
+  lastslots: {
     type: Date,
     reqired: true,
     default: 0,
