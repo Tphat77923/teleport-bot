@@ -1,5 +1,6 @@
 const { Client, Interaction } = require('discord.js');
 const User = require('../../models/User');
+const { coinemoji } = require('../../config.json');
 
 module.exports = {
     name: 'beg',
@@ -53,7 +54,7 @@ module.exports = {
         await user.save();
   
         interaction.editReply(
-          `Done!You earned ${begAmount}.\n Your new balance is ${user.balance}`
+          `Done!You earned ${begAmount}${coinemoji}.\n Your new balance is ${user.balance}${coinemoji}`
         );
       } catch (error) {
         console.log(`Error with /beg: ${error}`);

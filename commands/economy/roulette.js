@@ -1,5 +1,6 @@
 const { Client, Interaction, ApplicationCommandOptionType } = require('discord.js');
 const User = require('../../models/User');
+const { coinemoji } = require('../../config.json');
 
 module.exports = {
     name: 'roulette',
@@ -65,14 +66,14 @@ module.exports = {
                 await user.save();
 
                 interaction.editReply(
-                    `You won! You earned ${rouletteAmount}.\n Your new balance is ${user.balance}`
+                    `You won and earned ${rouletteAmount}${coinemoji}.\n Your new balance is ${user.balance}${coinemoji}`
                 );
             } else {
                 user.balance = user.balance + (begAmount - rouletteAmount);
                 await user.save();
 
                 interaction.editReply(
-                    `You lost! You lost ${rouletteAmount}.\n Your new balance is ${user.balance}`
+                    `You lost ${rouletteAmount}${coinemoji}!\n Your new balance is ${user.balance}${coinemoji}`
                 );
             }
         } catch (error) {

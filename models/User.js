@@ -6,6 +6,11 @@ const userSchema = new Schema({
     required: true,
     default: 0,
   },
+  bank:{
+    type: Number,
+    required: true,
+    default: 0,
+  },
   guildId: {
     type: String,
     required: true,
@@ -13,7 +18,7 @@ const userSchema = new Schema({
   },
   balance: {
     type: Number,
-    default: 1000,
+    default: 0,
   },
   lastDaily: {
     type: Date,

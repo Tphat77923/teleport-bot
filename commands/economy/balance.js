@@ -1,7 +1,6 @@
 const { Client, Interaction, EmbedBuilder, ApplicationCommandOptionType } = require('discord.js');
 const user = require('../../models/User');
-
-const dailyAmount = 1000;
+const { coinemoji } = require('../../config.json');
 
 module.exports = {
   name: 'balance',
@@ -85,5 +84,5 @@ function createBalanceEmbed(baluser, userId1, userTag, userAvatar) {
     .setColor('#32a852')
     .setTitle('Balance')
     .setAuthor({ name: userTag, iconURL: userAvatar })
-    .setDescription(`The balance of <@${userId1}> is ${baluser.balance}`);
+    .setDescription(`<@${userId1}> balance is ${baluser.balance}${coinemoji}\n<@${userId1}> bank balance is ${baluser.bank}${coinemoji} `);
 }

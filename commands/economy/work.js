@@ -1,10 +1,11 @@
 const { Client, Interaction } = require('discord.js');
 const User = require('../../models/User');
+const { coinemoji } = require('../../config.json');
 
 module.exports = {
     name: 'work',
     category: '💲Economy',
-    description: 'Go to work and earn some money!',
+    description: 'Go to work and earn some enderpearl!',
     /**
      *
      * @param {Client} client
@@ -53,7 +54,7 @@ module.exports = {
         await user.save();
   
         interaction.editReply(
-          `Done!You earned ${workAmount}.\n Your new balance is ${user.balance}`
+          `Done!You earned ${workAmount}${coinemoji}.\n Your new balance is ${user.balance}${coinemoji}`
         );
       } catch (error) {
         console.log(`Error with /work: ${error}`);

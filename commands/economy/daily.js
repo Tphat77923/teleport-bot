@@ -1,5 +1,6 @@
 const { Client, Interaction } = require('discord.js');
 const User = require('../../models/User');
+const { coinemoji } = require('../../config.json');
 
 module.exports = {
   name: 'daily',
@@ -55,7 +56,7 @@ module.exports = {
       await user.save();
 
       interaction.editReply(
-        `${dailyAmount} was added to your balance. Your new balance is ${user.balance}`
+        `${dailyAmount}${coinemoji} was added to your balance. Your new balance is ${user.balance}${coinemoji}`
       );
     } catch (error) {
       console.log(`Error with /daily: ${error}`);

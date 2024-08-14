@@ -20,9 +20,12 @@ const client = new Client({
     IntentsBitField.Flags.GuildMessages,
     IntentsBitField.Flags.GuildMessageReactions,
     IntentsBitField.Flags.GuildVoiceStates,
+    IntentsBitField.Flags.GuildPresences,
+    IntentsBitField.Flags.DirectMessages,
     IntentsBitField.Flags.GuildMembers,
     IntentsBitField.Flags.GuildPresences,
     IntentsBitField.Flags.MessageContent,
+    
   ] 
 });
 

@@ -1,5 +1,6 @@
 const { Client, Interaction, ApplicationCommandOptionType } = require('discord.js');
 const User = require('../../models/User');
+const { coinemoji } = require('../../config.json');
 
 module.exports = {
     name: 'leaderboard',
@@ -35,7 +36,7 @@ module.exports = {
             let leaderboard = '';
             for (let i = 0; i < users.length; i++) {
                 const user = await client.users.fetch(users[i].userId);
-                leaderboard += `${i + 1}. ${user.tag} - $${users[i].balance}\n`;
+                leaderboard += `${i + 1}. ${user.tag} - ${users[i].balance}${coinemoji}\n`;
             }
 
             interaction.editReply({

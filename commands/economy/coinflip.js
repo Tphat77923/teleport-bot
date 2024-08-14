@@ -1,9 +1,10 @@
 const { Client, Interaction, ApplicationCommandOptionType } = require('discord.js');
 const User = require('../../models/User');
+const { coinemoji } = require('../../config.json');
 
 module.exports = {
     name: 'coinflip',
-    category: 'Economy',
+    category: '💲Economy',
     description: 'Flip a coin and win big!',
     options: [
       {
@@ -29,7 +30,7 @@ module.exports = {
         ],
       },
     ],
-    async callback(client, interaction) {
+    callback: async (client, interaction) => {
       if (!interaction.inGuild()) {
         interaction.reply({
           content: 'You can only run this command inside a server.',
@@ -66,11 +67,11 @@ module.exports = {
         if (choice === flip) {
           user.balance += betAmount * 2;
           await user.save();
-          interaction.editReply(`You won! You earned ${betAmount * 2}. Your new balance is ${user.balance}`);
+          interaction.editReply(`You won and earned ${betAmount * 2}${coinemoji}. Your new balance is ${user.balance}${coinemoji}`);
         } else {
           user.balance -= betAmount;
           await user.save();
-          interaction.editReply(`You lost! You lost ${betAmount}. Your new balance is ${user.balance}`);
+          interaction.editReply(`You lost ${betAmount}${coinemoji}! Your new balance is ${user.balance}${coinemoji}`);
         }
       } catch (error) {
         console.log(`Error with /coinflip: ${error}`);

@@ -4,7 +4,7 @@ const ms = require('ms');
 
 module.exports = {
     name: 'timer',
-    category: '⚙️Misc',
+    category: '⚙Misc',
     description: 'Set a timer',
     options: [
         {

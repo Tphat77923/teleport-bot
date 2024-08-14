@@ -1,6 +1,6 @@
 const getLocalCommands = require('../../utils/getLocalCommands');
-
 const { Client, Interaction, ApplicationCommandOptionType, EmbedBuilder } = require('discord.js');
+
 module.exports = {
   name: 'help',
   category: '❓Help',
@@ -51,7 +51,7 @@ module.exports = {
       .setTitle('Teleport Bot Command list')
       .setDescription(helpMessage)
       .addFields({ name: 'Need more help?', value: '**[Support Server](https://tphat77923.github.io/teleport/endercity.html) - [Invite me](https://tphat77923.github.io/teleport/invite.html)**', inline: true })
-      .setFooter({text:'Have a nice day!', icon_url: 'https://i.imgur.com/Dqz0j0F.png'});
+      .setFooter({text:'Have a nice day!', iconURL: 'https://i.imgur.com/Dqz0j0F.png'});
     await interaction.reply({ embeds: [helpmessage] });
   },
 };

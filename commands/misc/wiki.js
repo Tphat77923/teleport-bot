@@ -3,7 +3,7 @@ const { EmbedBuilder, ApplicationCommandOptionType } = require('discord.js');
 
 module.exports = {
     name: "wikipedia",
-    category: '⚙️Misc',
+    category: '⚙Misc',
     description: "Shows Results From Wikipedia",
     options: [
         {
