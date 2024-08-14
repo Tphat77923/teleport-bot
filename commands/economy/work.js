@@ -48,7 +48,7 @@ module.exports = {
         }
   
         // Generate a random work amount between 20000 and 80000
-        const workAmount = Math.floor(Math.random() * (40000 - 8000 + 1)) + 8000;
+        const workAmount = Math.floor(Math.random() * (40 - 8 + 1)) + 8;
   
         user.balance += workAmount;
         await user.save();

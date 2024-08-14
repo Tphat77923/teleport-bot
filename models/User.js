@@ -20,6 +20,18 @@ const userSchema = new Schema({
     type: Number,
     default: 0,
   },
+  shield:{
+    type: Number,
+    default: 0,
+  },
+  sword:{
+    type: Number,
+    default: 0,
+  },
+  beacon:{
+    type: Number,
+    default: 0,
+  },
   lastDaily: {
     type: Date,
     reqired: true,

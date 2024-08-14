@@ -50,7 +50,7 @@ module.exports = {
       }
 
       // Generate a random daily amount between 10000 and 50000
-      const dailyAmount = Math.floor(Math.random() * (50000 - 10000 + 1)) + 10000;
+      const dailyAmount = Math.floor(Math.random() * (50 - 10 + 1)) + 10;
 
       user.balance += dailyAmount;
       await user.save();

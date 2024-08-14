@@ -3,9 +3,9 @@ const User = require('../../models/User');
 const { coinemoji } = require('../../config.json');
 
 module.exports = {
-    name: 'leaderboard',
+    name: 'bank-leaderboard',
     category: '💲Economy',
-    description: 'Show the leaderboard!',
+    description: 'Show the bank leaderboard!',
     options: [
         {
             name: 'top',

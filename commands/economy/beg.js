@@ -48,7 +48,7 @@ module.exports = {
         }
   
         // Generate a random beg amount between 2000 and 10000
-        const begAmount = Math.floor(Math.random() * (10000 - 2000 + 1)) + 2000;
+        const begAmount = Math.floor(Math.random() * (10 - 2 + 1)) + 2;
   
         user.balance += begAmount;
         await user.save();

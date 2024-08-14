@@ -54,17 +54,17 @@ module.exports = {
             else if (fishID < 10) rarity = '🦑rare';
             else rarity = '🐋legendary';
 
-        if (rarity == '🔧junk') fishAmount = Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000;
-        if (rarity == '🐟common') fishAmount = Math.floor(Math.random() * (7000 - 4000 + 1)) + 4000;
-        if (rarity == '🐠uncommon') fishAmount = Math.floor(Math.random() * (13000 - 8000 + 1)) + 8000;
-        if (rarity == '🦑rare') fishAmount = Math.floor(Math.random() * (20000 - 14000 + 1)) + 14000;
-        if (rarity == '🐋legendary') fishAmount = Math.floor(Math.random() * (30000 - 20000 + 1)) + 20000;
+        if (rarity == '🔧junk') fishAmount = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
+        if (rarity == '🐟common') fishAmount = Math.floor(Math.random() * (7 - 4 + 1)) + 4;
+        if (rarity == '🐠uncommon') fishAmount = Math.floor(Math.random() * (13 - 8 + 1)) + 8;
+        if (rarity == '🦑rare') fishAmount = Math.floor(Math.random() * (20 - 14 + 1)) + 14;
+        if (rarity == '🐋legendary') fishAmount = Math.floor(Math.random() * (30 - 20 + 1)) + 20;
   
         user.balance += fishAmount;
         await user.save();
   
         interaction.editReply(
-          `🎣 You Cast Out Your Line And Caught A ${rarity}, and get paid for ${fishAmount} `
+          `🎣 You Cast Out Your Line And Caught A ${rarity}, and get paid for ${fishAmount}${coinemoji} `
         );
       } catch (error) {
         console.log(`Error with /beg: ${error}`);

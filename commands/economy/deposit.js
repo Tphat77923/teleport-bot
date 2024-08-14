@@ -14,6 +14,11 @@ module.exports = {
         required: true,
       },
     ],
+  /**
+   *
+   * @param {Client} client
+   * @param {Interaction} interaction
+   */
     callback: async (client, interaction) => {
       if (!interaction.inGuild()) {
         interaction.reply({
@@ -51,7 +56,7 @@ module.exports = {
         await user.save();
         const embed = new EmbedBuilder()
         .setTitle('Updated balance amount')
-        .setDescription(`Successfully withdrawed **${depositAmount}**${coinemoji} to your bank!`)
+        .setDescription(`Successfully deposited **${depositAmount}**${coinemoji} to your bank!`)
         .setColor('#32a852')
         .setTimestamp();
   

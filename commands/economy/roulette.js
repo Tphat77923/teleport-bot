@@ -57,7 +57,7 @@ module.exports = {
             if (user.balance < interaction.options.get('bet').value) return interaction.editReply('You do not have enough balance to play this game!');
             const begAmount = interaction.options.get('bet').value;
             // Generate a random roulette amount between 1000 and 10000
-            const rouletteAmount = Math.floor(Math.random() * (begAmount - 1000 + 1)) + 1000;
+            const rouletteAmount = Math.floor(Math.random() * (begAmount - 1 + 1)) + 1;
             user.balance -= begAmount;
             const win = Math.random() < 0.5;
 
