@@ -72,11 +72,11 @@ module.exports = {
         if (choice === flip) {
           user.balance += betAmount * 2;
           await user.save();
-          interaction.editReply(`You won and earned ${betAmount * 2}${coinemoji}. Your new balance is ${user.balance}${coinemoji}`);
+          interaction.editReply(`Your coin is ${flip}. You won and earned ${betAmount * 2}${coinemoji}. Your new balance is ${user.balance}${coinemoji}`);
         } else {
           user.balance -= betAmount;
           await user.save();
-          interaction.editReply(`You lost ${betAmount}${coinemoji}! Your new balance is ${user.balance}${coinemoji}`);
+          interaction.editReply(`Your coin is ${flip}. You lost ${betAmount}${coinemoji}! Your new balance is ${user.balance}${coinemoji}`);
         }
       } catch (error) {
         console.log(`Error with /coinflip: ${error}`);

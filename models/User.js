@@ -62,6 +62,21 @@ const userSchema = new Schema({
     reqired: true,
     default: 0,
   },
+  lastshield:{
+    type: Date,
+    reqired: true,
+    default: 0,
+  },
+  lastsword:{
+    type: Date,
+    reqired: true,
+    default: 0,
+  },
+  lastbeacon:{
+    type: Date,
+    reqired: true,
+    default: 0,
+  },
 });
 
 module.exports = model('User', userSchema);
