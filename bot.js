@@ -1,4 +1,4 @@
-// Description: Main file for the bot
+// Description: Main file for my the bot
 const { Client, GatewayIntentBits, IntentsBitField } = require('discord.js');
 const config = require('./config.json');
 require('dotenv').config();
