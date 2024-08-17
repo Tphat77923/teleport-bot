@@ -1,5 +1,5 @@
 const GuildConfiguration = require('../../models/GuildConfiguration');
-const { EmbedBuilder, ApplicationCommandOptionType } = require('discord.js');
+const { EmbedBuilder, ApplicationCommandOptionType, PermissionFlagsBits } = require('discord.js');
 
 module.exports = {
     name: 'suggestion-config',
@@ -7,6 +7,7 @@ module.exports = {
     category: 'Suggestion',
     devOnly: false,
     testOnly: false,
+    permissionsRequired: [PermissionFlagsBits.Administrator],
     options: [
         {
             name: 'type',

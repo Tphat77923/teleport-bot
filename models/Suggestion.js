@@ -1,11 +1,6 @@
  const { Schema, model } = require('mongoose')
- const { randomUUID } = require('crypto')
 
 const suggestionSchema = new Schema({
-    suggestionId: {
-        type: String,
-        default: randomUUID(),
-    },
     authorId: {
         type: String,
         required: true,
