@@ -1,4 +1,5 @@
 const { Client, Interaction, ApplicationCommandOptionType, Message, EmbedBuilder } = require('discord.js');
+const { bugchannelreport } = require('../../config.json')
 module.exports = {
   name: 'bugreport',
   category: '❓Help',
@@ -66,8 +67,10 @@ module.exports = {
           }
         )
         .setColor('#ff0000');
-        client.channels.cache.get('1207231618838691902').send('Hey <@904512969809989673>,');
-        client.channels.cache.get('1207231618838691902').send({ embeds: [report] });
+        client.channels.cache.get(bugchannelreport).send({ 
+          content: `Hey <@904512969809989673>,`,
+          embeds: [report] 
+        });
         
 
       })

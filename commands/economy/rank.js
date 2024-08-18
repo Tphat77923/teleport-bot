@@ -69,7 +69,7 @@ const Level = require('../../models/level');
         .setRank(currentRank)
         .setLevel(fetchedLevel.level)
         .setCurrentXP(fetchedLevel.xp)
-        .setRequiredXP(calculateLevelXp(fetchedLevel.level))
+        .setRequiredXP(calculateLevelXp(fetchedLevel.level + 1))
         .setStatus(targetUserObj.presence.status)
         .setProgressBar('#FFC300', 'COLOR')
         .setUsername(targetUserObj.user.username)

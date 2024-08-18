@@ -15,6 +15,7 @@ module.exports = {
       name: 'reason',
       description: 'The reason you want to kick.',
       type: ApplicationCommandOptionType.String,
+      required: false,
     },
   ],
   permissionsRequired: [PermissionFlagsBits.KickMembers],

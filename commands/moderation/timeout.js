@@ -38,6 +38,7 @@ module.exports = {
     const mentionable = interaction.options.get('target-user').value;
     const duration = interaction.options.get('duration').value; // 1d, 1 day, 1s 5s, 5m
     const reason = interaction.options.get('reason')?.value || 'No reason provided';
+    const reason1 = `Timeout by ${interaction.user.tag} for ${reason}`;
 
     await interaction.deferReply();
 
@@ -82,11 +83,11 @@ module.exports = {
       const { default: prettyMs } = await import('pretty-ms');
 
       if (targetUser.isCommunicationDisabled()) {
-        await targetUser.timeout(msDuration, reason);
+        await targetUser.timeout(msDuration, reason1);
         await interaction.editReply(`Updated ${targetUser}'s timeout to ${prettyMs(msDuration, { verbose: true })}\nReason: ${reason}`);
         return;
       }
-      await targetUser.timeout(msDuration, reason);
+      await targetUser.timeout(msDuration, reason1);
       await interaction.editReply(`Timed out ${targetUser} for ${prettyMs(msDuration, { verbose: true })}.\nReason: ${reason}`);
     } catch (error) {
       console.log(`There was an error when timing out: ${error}`);

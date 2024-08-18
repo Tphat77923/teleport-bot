@@ -112,7 +112,7 @@ module.exports = {
     const rejectButton = new ButtonBuilder()
         .setEmoji('❌')
         .setLabel('Reject')
-        .setStyle(ButtonStyle.Success)
+        .setStyle(ButtonStyle.Danger)
         .setCustomId(`suggestion.${newSuggestion.id}.reject`)
 
     const fristRow = new ActionRowBuilder().addComponents(upvoteButton, downvoteButton);
