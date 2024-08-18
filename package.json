@@ -16,6 +16,7 @@
     "chokidar": "^3.6.0",
     "crypto-random-string": "^5.0.0",
     "discord-canvas": "^1.5.2",
+    "discord-rebackup": "^3.5.0",
     "discord.js": "^14.14.1",
     "dotenv": "^16.4.5",
     "moment": "^2.30.1",
