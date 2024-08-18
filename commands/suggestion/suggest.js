@@ -6,7 +6,7 @@ const formatResults = require('../../utils/fomatResults');
 module.exports = {
     name: 'suggest',
     description: 'Suggest something for this server',
-    category: 'Suggestion',
+    category: '💭Suggestion',
     devOnly: false,
     testOnly: false,
     permissionsRequired: [],

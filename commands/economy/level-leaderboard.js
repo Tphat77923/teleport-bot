@@ -9,7 +9,7 @@ const Level = require('../../models/level');
 
 module.exports = {
   name: 'level-leaderboard',
-  category: 'Economy',
+  category: '💲Economy',
   description: 'Displays the top users with the highest levels.',
   options: [
     {

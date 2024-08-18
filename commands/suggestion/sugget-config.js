@@ -4,7 +4,7 @@ const { EmbedBuilder, ApplicationCommandOptionType, PermissionFlagsBits } = requ
 module.exports = {
     name: 'suggestion-config',
     description: 'Configure the suggestion system for this server',
-    category: 'Suggestion',
+    category: '💭Suggestion',
     devOnly: false,
     testOnly: false,
     permissionsRequired: [PermissionFlagsBits.Administrator],

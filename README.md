@@ -4,5 +4,6 @@ This is a bot can teleport anywhere to help any server setup, make fun and manag
 + 👮‍♂️Moderation management
 + 💰Economy System
 + 🌐Ask Wiki and AI
++ 😀Just for fun commands
 + 💭Suggestion System
 + More upgrade...

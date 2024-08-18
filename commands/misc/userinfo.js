@@ -4,6 +4,7 @@ moment = require("moment"); //npm i discord.js moment
 
 module.exports = {
   name: "userinfo",
+  category: '⚙Misc',
   description: "Show Member Information!",
   options: [
     {

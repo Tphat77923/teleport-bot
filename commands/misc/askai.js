@@ -8,7 +8,7 @@ const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
 
 module.exports = {
     name: 'askai',
-    type: 'CHAT_INPUT',
+    category: '⚙Misc',
     description: 'Ask the AI a question',
     options: [
         {
