@@ -35,6 +35,13 @@ module.exports = {
 
 
     callback: async (client, interaction) => {
+        if (!interaction.inGuild()) {
+            interaction.reply({
+              content: 'You can only run this command inside a server.',
+              ephemeral: true,
+            });
+            return;
+          }
         const type = interaction.options.getString('type')
         const channel = interaction.options.getChannel('channel');
         let guildConfiguration = await GuildConfiguration.findOne({ guildId: interaction.guildId })

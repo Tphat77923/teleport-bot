@@ -18,6 +18,13 @@ module.exports = {
      * @param {Interaction} interaction
      */
     callback: async (client, interaction) => {
+      if (!interaction.inGuild()) {
+        interaction.reply({
+          content: 'You can only run this command inside a server.',
+          ephemeral: true,
+        });
+        return;
+      }
     const user = interaction.options.getUser('user');
     if (!user) return interaction.reply('Woaaah slow down, who are we hacking? It Should be a member not role.');
 

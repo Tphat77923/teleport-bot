@@ -88,7 +88,22 @@ module.exports = {
       .setTitle('Reaction Role Created')
       .setDescription(`React with ${emoji} to get the role ${role.name}`);
     interaction.reply({ embeds: [embed] });
-} 
+} else if(type == "remove"){
+    const reactionRole = await ReactionRole.findOne({ messageId: messageId, emoji: emoji });
+
+    if (!reactionRole) {
+      interaction.reply({
+        content: 'Reaction role not found.',
+        ephemeral: true,
+      });
+      return;
+    }
+    
+    await reactionRole.delete();
+    interaction.reply({
+      content: 'Reaction role removed.',
+    });
+}
 
     }
 }

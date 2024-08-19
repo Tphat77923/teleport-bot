@@ -1,4 +1,4 @@
-const { Client, Interaction, AttachmentBuilder, EmbedBuilder } = require('discord.js');
+const { Client, Interaction, AttachmentBuilder, EmbedBuilder, ApplicationCommandOptionType } = require('discord.js');
 
 module.exports = {
     name: 'avatar',
@@ -8,11 +8,18 @@ module.exports = {
       {
         name: 'user',
         description: 'The user to show the avatar of',
-        type: 6, // 6 is the type for USER
+        type: ApplicationCommandOptionType.User,
         required: false
       }
     ],
     callback: async (client, interaction) => {
+      if (!interaction.inGuild()) {
+        interaction.reply({
+          content: 'You can only run this command inside a server.',
+          ephemeral: true,
+        });
+        return;
+      }
       const user = interaction.options.getUser('user') || interaction.user;
   
       const avatarUrl = user.displayAvatarURL({ dynamic: true, size: 1024 });

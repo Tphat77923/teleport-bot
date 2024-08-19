@@ -19,6 +19,13 @@ module.exports = {
      * @param {Interaction} interaction
      */
     callback: async (client, interaction) => {
+        if (!interaction.inGuild()) {
+            interaction.reply({
+              content: 'You can only run this command inside a server.',
+              ephemeral: true,
+            });
+            return;
+          }
         const query = interaction.options.getString('query');
         if (!query) return interaction.reply({ content: "**Enter A Query!**", ephemeral: true });
         let m = await interaction.reply({

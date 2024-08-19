@@ -19,6 +19,13 @@ module.exports = {
    * 
   */
  callback: async (client, interaction) => {
+    if (!interaction.inGuild()) {
+        interaction.reply({
+          content: 'You can only run this command inside a server.',
+          ephemeral: true,
+        });
+        return;
+      }
     try {
     const guildConfiguration = await GuildConfiguration.findOne({ guildId: interaction.guildId})
     if(!guildConfiguration?.suggestionsChannelIds.length){

@@ -8,6 +8,13 @@ module.exports = {
 
 
     callback: async (client, interaction) => {
+      if (!interaction.inGuild()) {
+        interaction.reply({
+          content: 'You can only run this command inside a server.',
+          ephemeral: true,
+        });
+        return;
+      }
       const Guild = interaction.guild;
       const Owner = Guild.ownerId;
       const Created = await Format(Guild.createdTimestamp);

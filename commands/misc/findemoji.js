@@ -17,6 +17,13 @@ module.exports = {
     permissionsRequired:[PermissionFlagsBits.ManageMessages],
 
     callback: async (client, interaction) => {
+      if (!interaction.inGuild()) {
+        interaction.reply({
+          content: 'You can only run this command inside a server.',
+          ephemeral: true,
+        });
+        return;
+      }
       
           const query = interaction.options.getString('emoji').toLowerCase().trim().replace(' ', '_');
           let emojis = await fetch("https://emoji.gg/api/").then(res => res.json());

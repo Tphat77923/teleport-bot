@@ -22,6 +22,13 @@ module.exports = {
    */
 
   callback: async (client, interaction) => {
+    if (!interaction.inGuild()) {
+      interaction.reply({
+        content: 'You can only run this command inside a server.',
+        ephemeral: true,
+      });
+      return;
+    }
     const User = interaction.options.getUser("user") || interaction.member;
       Bot = User.bot ? "Yes" : "No";
     const GuildMember = interaction.guild.members.cache.get(User.id);
