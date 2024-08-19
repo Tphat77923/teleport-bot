@@ -76,7 +76,10 @@ module.exports = {
             collector.on('collect', async (i) => {
                 if (i.customId === `continue.bu`) {
                     await backup.load(id, interaction.guild)
-                    client.users.cache.get(interaction.user.id).send("Backup loaded sucessfully")
+                    interaction.user.send("Loaded backup sucessful").catch(error => {
+                        console.error(error);
+                        interaction.editReply('An error occurred while sending dms!');
+                    })
                 } else {
                     const disabledContinueButton = new ButtonBuilder()
                     .setEmoji('👍')
@@ -110,7 +113,7 @@ module.exports = {
                 const backupf = await backup.fetch(id);
                 const embed = new EmbedBuilder()
                 .setTitle('Backup Info')
-                .setDescription(`Backup ID: ${backupf.id}\nBackup Size: ${backupf.size}MB`)
+                .setDescription(`Backup ID: ${backupf.id}\nBackup Size: ${backupf.size} KB`)
                 .setColor('#a205f7')
                 interaction.editReply({ embeds: [embed] })
             } catch (error) {

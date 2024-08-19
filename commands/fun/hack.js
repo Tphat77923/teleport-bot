@@ -9,7 +9,7 @@ module.exports = {
         name: 'user',
         description: 'The user you want to hack',
         type: ApplicationCommandOptionType.User,
-        required: false
+        required: true
       },
     ],
     /**

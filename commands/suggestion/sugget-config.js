@@ -1,5 +1,5 @@
 const GuildConfiguration = require('../../models/GuildConfiguration');
-const { EmbedBuilder, ApplicationCommandOptionType, PermissionFlagsBits } = require('discord.js');
+const { EmbedBuilder, ApplicationCommandOptionType, PermissionFlagsBits, ChannelType } = require('discord.js');
 
 module.exports = {
     name: 'suggestion-config',
@@ -43,7 +43,7 @@ module.exports = {
             
         }
         
-        if (!channel) {
+        if (!channel || channel.type !== ChannelType.GuildText) {
             interaction.reply({
                 content: 'The channel must be a text channel.',
                 ephemeral: true,

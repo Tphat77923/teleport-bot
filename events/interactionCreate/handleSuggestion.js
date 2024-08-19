@@ -2,10 +2,6 @@ const {Client ,Interaction, InteractionType, MessageComponentInteraction} = requ
 const Discord = require('discord.js')
 const Suggestion = require('../../models/Suggestion');
 const formatResults = require('../../utils/fomatResults');
-function isButtonInteraction(interaction) {
-    
-    return interaction.type === Discord.InteractionType.Button;
-  }
 
 /**
  * @param {Client} client
@@ -34,7 +30,7 @@ module.exports = async (client, interaction) => {
             targetSuggestion.status = 'approved';
 
             targetMessageEmbed.data.color = 0x84e660;
-            targetMessageEmbed.fields[1].value = '✅Approved Suggestion';
+            targetMessageEmbed.fields[1].value = '✅Approved';
 
             
 
@@ -55,7 +51,7 @@ module.exports = async (client, interaction) => {
             targetSuggestion.status = 'rejected';
 
             targetMessageEmbed.data.color = 0xff6161;
-            targetMessageEmbed.fields[1].value = '❌Rejected Suggestion';
+            targetMessageEmbed.fields[1].value = '❌Rejected';
             
             targetMessage.edit({
                 embeds: [targetMessageEmbed],
