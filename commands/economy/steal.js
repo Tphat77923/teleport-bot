@@ -65,14 +65,14 @@ module.exports = {
                     await user2.save();
                     interaction.editReply(`You have successfully stolen ${amount}${coinemoji} from <@${userId2}>`);
                 } else if(steals == 'locked') {
-                const amount = Math.floor(Math.random() * (user.balance - 1 + 1)) + 1;
+                const amount = Math.floor(Math.random() * (user2.balance - 1 + 1)) + 1;
                 user.balance -= amount;
                 user2.balance += amount;
                 await user.save();
                 await user2.save();
                 interaction.editReply(`His home has been locked, and you have been caught by the police!Given ${amount}${coinemoji} to <@${userId2}>`);
                 } else {
-                    const amount = Math.floor(Math.random() * (user.balance - 1 + 1)) + 1;
+                    const amount = Math.floor(Math.random() * (user2.balance - 1 + 1)) + 1;
                     user.balance -= amount;
                     user2.balance += amount;
                     await user.save();

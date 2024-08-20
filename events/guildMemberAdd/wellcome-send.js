@@ -5,10 +5,10 @@ const { GuildMember } = require('discord.js')
  * 
  * @param {GuildMember} guildMember 
  */
-module.exports = async (guildMember) => {
+module.exports = async (client, guildMember) => {
     try {
         if (guildMember.user.bot) return;
-        console.log('ok')
+        
         const wellcomeConfigs = await WelcomeChannel.find({
             guildId: guildMember.guild.id
         })
@@ -30,10 +30,10 @@ module.exports = async (guildMember) => {
             const customMessage = wellcomeConfig.message || 'Hey {username}👋. Wellcome to {server-name}';
 
             const wellcomeMessage = customMessage
-                .replace('{mention-member}', `${guildMember.id}`)
+                .replace('{mention-member}', `<@${guildMember.id}>`)
                 .replace('{username}', guildMember.user.username)
                 .replace('{server-name}', guildMember.guild.name)
-                .replace('{member-count}', String(guildMember.guild.approximateMemberCount))
+                .replace('{member-count}', String(guildMember.guild.memberCount))
             
             targetChannel.send(wellcomeMessage).catch(() => {})
 

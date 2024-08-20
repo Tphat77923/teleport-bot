@@ -4,12 +4,13 @@ const ReactionRole = require('../../models/ReactionRole')
 
 module.exports = async (client, reaction, user) => {
   if (user.bot) return;
-
+  let emojis = `<:${reaction.emoji.name}:${reaction.emoji.id}>`
+  if (!reaction.emoji.id) emojis = reaction.emoji.name
   try {
-    const reactionRole = await ReactionRole.findOne({ messageId: reaction.message.id, emoji: reaction.emoji.name });
+    const reactionRole = await ReactionRole.findOne({ messageId: reaction.message.id, emoji: emojis });
 
     if (!reactionRole) {
-      console.log(`No reaction role found for message ${reaction.message.id} and emoji ${reaction.emoji.name}`);
+      console.log(`No reaction role found for message ${reaction.message.id} and emoji ${emojis}`);
       return;
     }
 
@@ -26,7 +27,7 @@ module.exports = async (client, reaction, user) => {
     if (!reaction.users.cache.has(user.id)) {
       // Remove the role
       member.roles.remove(role);
-      console.log(`Removed role ${role.name} from ${user.username} for unreacting with ${reaction.emoji.name}`);
+      console.log(`Removed role ${role.name} from ${user.username} for unreacting with ${emojis}`);
     }
   } catch (error) {
     console.error(`Error in emojiHandler: ${error}`);

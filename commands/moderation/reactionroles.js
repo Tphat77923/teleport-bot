@@ -6,55 +6,63 @@ module.exports = {
     name: 'reaction-role',
     description: 'Configure the suggestion system for this server',
     category: 'Moderation',
-    devOnly: false,
-    testOnly: false,
     permissionsRequired: [PermissionFlagsBits.Administrator],
     options: [
         {
-            name: 'type',
-            description: 'The type of suggestion system to use',
-            type: ApplicationCommandOptionType.String,
-            required: true,
-            choices: [
-                {
-                    name: 'Add',
-                    value: 'add',
-                },
-                {
-                    name: 'Remove',
-                    value: 'remove',
-                },
+            name: 'add',
+            description: 'Add a reaction roles to use',
+            type: ApplicationCommandOptionType.Subcommand,
+            options: [
+              {
+                name: 'message-id',
+                description: 'The channel to send suggestions to',
+                type: ApplicationCommandOptionType.String,
+                required: true,
+            },
+            {
+                name: 'role',
+                description: 'The role to give when the reaction is added',
+                type: ApplicationCommandOptionType.Role,
+                required: true,
+            },
+            {
+                name: 'emoji',
+                description: 'The emoji to add to the message',
+                type: ApplicationCommandOptionType.String,
+                required: true,
+            },
             ],
         },
         {
-            name: 'message-id',
-            description: 'The channel to send suggestions to',
-            type: ApplicationCommandOptionType.String,
-            required: true,
-        },
-        {
-            name: 'role',
-            description: 'The role to give when the reaction is added',
-            type: ApplicationCommandOptionType.Role,
-            required: true,
-        },
-        {
-            name: 'emoji',
-            description: 'The emoji to add to the message',
-            type: ApplicationCommandOptionType.String,
-            required: true,
-        },
+            name: 'remove',
+            description: 'Remove a reaction role',
+            type: ApplicationCommandOptionType.Subcommand,
+            options: [
+              {
+                name: 'message-id',
+                description: 'The channel to send suggestions to',
+                type: ApplicationCommandOptionType.String,
+                required: true,
+            },
+            {
+                name: 'emoji',
+                description: 'The emoji to add to the message',
+                type: ApplicationCommandOptionType.String,
+                required: true,
+            },
+            ],
+        }
     ],
     permissionsRequired: [PermissionFlagsBits.Administrator],
 
 
     callback: async (client, interaction) => {
-        const type = interaction.options.getString('type')
         const messageId = interaction.options.getString('message-id');
         const role = interaction.options.getRole('role');
         const emoji = interaction.options.getString('emoji');
+        const type = interaction.options.getSubcommand();
 
-        if (type === 'add') {
+        if (type === "add") {
     if (!messageId) {
       interaction.reply({
         content: 'Please provide a message ID or let me generate one for you.',
@@ -98,7 +106,7 @@ module.exports = {
       });
       return;
     }
-    
+    message.reactions.removeAll()
     await reactionRole.delete();
     interaction.reply({
       content: 'Reaction role removed.',

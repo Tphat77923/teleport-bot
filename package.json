@@ -13,6 +13,7 @@
     "@google/generative-ai": "^0.17.0",
     "bad-words": "^3.0.4",
     "canvacord": "^5.4.10",
+    "captcha-canvas": "^2.3.1",
     "chokidar": "^3.6.0",
     "crypto-random-string": "^5.0.0",
     "discord-canvas": "^1.5.2",
