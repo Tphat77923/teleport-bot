@@ -8,4 +8,5 @@ This is a bot can teleport anywhere to help any server setup, make fun and manag
 + 💭Suggestion System
 + ⭕Reaction Role
 + ✅ Verification System
++ 🎟 Ticket System
 + More upgrade...

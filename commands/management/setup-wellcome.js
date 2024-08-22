@@ -2,9 +2,9 @@ const { ChannelType, PermissionFlagsBits, Client, Interaction, ApplicationComman
 const wellcomeChannel = require('../../models/WelcomeChannel')
 
 module.exports = {
-    name: 'wellcome-setup',
+    name: 'wellcome',
     description: 'Setup the wellcome message for the server',
-    category: '👋Wellcome',
+    category: '🔑Management',
     options:[
         {
             name: 'add',
@@ -15,13 +15,14 @@ module.exports = {
                     name: 'channel',
                     description: 'The channel to send the wellcome message',
                     type: ApplicationCommandOptionType.Channel,
+                    ChannelType: ChannelType.GuildText,
                     required: true
                 },
                 {
                     name: 'message',
                     description: 'The message to send',
                     type: ApplicationCommandOptionType.String,
-                    required: true
+                    required: false
                 }
             ]
         }, {
@@ -33,6 +34,7 @@ module.exports = {
                     name: 'channel',
                     description: 'The channel to remove the wellcome message',
                     type: ApplicationCommandOptionType.Channel,
+                    ChannelType: ChannelType.GuildText,
                     required: true
                 }
             ]

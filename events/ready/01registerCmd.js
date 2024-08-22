@@ -1,7 +1,7 @@
 const areCommandsDifferent = require('../../utils/areCmdsDifferent');
 const getApplicationCommands = require('../../utils/getApplicationCmds');
 const getLocalCommands = require('../../utils/getLocalCommands');
-const { deleteAllCommands } = require('../../config.json');
+const { deleteAllCommands, testServer} = require('../../config.json');
 const { REST, Routes } = require('discord.js');
 
 module.exports = async (client) => {
@@ -21,6 +21,26 @@ module.exports = async (client) => {
       client
     );
 
+    // Delete commands that exist in the application but not in local
+for (const applicationCommand of applicationCommands.cache.values()) {
+  const localCommand = localCommands.find((cmd) => cmd.name === applicationCommand.name);
+  if (!localCommand) {
+    await applicationCommands.delete(applicationCommand.id);
+    console.log(`❌ Deleted command "${applicationCommand.name}".`);
+  }
+}
+const guildCommands = await client.guilds.cache.get(testServer).commands.fetch();
+// Delete commands that exist in local but not in the guild
+if(guildCommands) {
+    for (const guildCommand of guildCommands.values()) {
+      const localCommand = localCommands.find((cmd) => cmd.name === guildCommand.name);
+      if (!localCommand) {
+        await guildCommand.delete();
+        console.log(`❌ Deleted guild command "${guildCommand.name}".`);
+      }
+    }
+  }
+
     for (const localCommand of localCommands) {
       const { name, description, options  } = localCommand;
 
@@ -28,11 +48,6 @@ module.exports = async (client) => {
         (cmd) => cmd.name === name
       );
       if (existingCommand) {
-        if (localCommands.delete) {
-          await applicationCommands.delete(existingCommand.id);
-          console.log(`❌ Deleted command "${name}".`);
-          continue;
-        }
 
         if (areCommandsDifferent(existingCommand, localCommand)) {
           await applicationCommands.edit(existingCommand.id, {
@@ -48,7 +63,16 @@ module.exports = async (client) => {
           );
           continue;
         }
-
+        if (localCommand.testOnly === true) {
+          // Register command in test server
+          await applicationCommands.create({
+            name,
+            description,
+            options,
+          }, testServer);
+          console.log(`✅ Registered command "${name}" in test server.`);
+        } else {
+          // Register command globally
         await applicationCommands.create({
           name,
           description,
@@ -58,6 +82,7 @@ module.exports = async (client) => {
 
         console.log(`✅ Registered command "${name}".`);
       }
+    }
     }
   } catch (error) {
     console.log(`⛔ There was an error: ${error}`);

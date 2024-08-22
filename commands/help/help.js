@@ -25,7 +25,7 @@ module.exports = {
     if (cmdName) {
       const commandName = cmdName.value.toLowerCase();
       const command = localCommands.find((cmd) => cmd.name.toLowerCase() === commandName);
-      if (!command) {
+      if (command.devOnly === true || !command) {
         await interaction.reply(`Command "${commandName}" not found.`);
         return;
       }
@@ -36,6 +36,7 @@ module.exports = {
     // If no command is specified, show all commands sorted by category
     const categories = {};
     localCommands.forEach((command) => {
+      if (command.devOnly === true) return;
       if (!categories[command.category]) {
         categories[command.category] = [];
       }

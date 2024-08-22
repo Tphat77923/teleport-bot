@@ -5,7 +5,7 @@ const ReactionRole = require('../../models/ReactionRole');
 module.exports = {
     name: 'reaction-role',
     description: 'Configure the suggestion system for this server',
-    category: 'Moderation',
+    category: '👮‍♂️Moderation',
     permissionsRequired: [PermissionFlagsBits.Administrator],
     options: [
         {

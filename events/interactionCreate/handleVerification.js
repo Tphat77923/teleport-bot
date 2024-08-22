@@ -1,4 +1,4 @@
-const {Client ,Interaction, InteractionType, MessageComponentInteraction, EmbedBuilder, ButtonBuilder, AttachmentBuilder, ModalBuilder, TextInputBuilder, ActionRowBuilder, Component, ButtonStyle, TextInputStyle} = require('discord.js');
+const {Client ,Interaction, InteractionType, MessageComponentInteraction, EmbedBuilder, ButtonBuilder, AttachmentBuilder, ModalBuilder, TextInputBuilder, ActionRowBuilder, ButtonStyle, TextInputStyle} = require('discord.js');
 const Verification = require('../../models/Verification');
 const { CaptchaGenerator } = require('captcha-canvas')
 const dms = require('../../models/dms')
@@ -83,7 +83,6 @@ module.exports = async (client, interaction) => {
         const collector = msg.createMessageComponentCollector()
         collector.on('collect', async i => {
             if(i.customId === "capButton"){
-                //await i.deferReply({ ephemeral: true });    //<--- (here)
                 const query = {
                     userId: member.id,
                     guildId: guild.id,
@@ -94,7 +93,7 @@ module.exports = async (client, interaction) => {
                     const newDms = new dms(query)
                 await newDms.save().catch((error) => {
                     console.error(error);
-                    i.followUp('(2)An error occurred while saving the information. Please try again later!')
+                    i.followUp('An error occurred while saving the information. Please try again later!')
                     return;})
                     i.showModal(capModal)
                     return;
@@ -102,7 +101,7 @@ module.exports = async (client, interaction) => {
                 result.captcha = value
                     await result.save().catch((error) => {
                         console.error(error);
-                        i.followUp('(1)An error occurred while saving the information. Please try again later!')
+                        i.followUp('An error occurred while saving the information. Please try again later!')
                         return;
                     })
                     
@@ -122,12 +121,12 @@ module.exports = async (client, interaction) => {
             userId: interaction.user.id        
         }
         const exists1 = await dms.findOne(query)
-        if(!exists1) return interaction.followUp('(1)Invalid captcha! Please try click verify button on that server again!')
+        if(!exists1) return interaction.followUp('Invalid captcha! Please try click verify button on that server again!')
         const q2 = {
             guildId: exists1.guildId
         }
         const exists = await Verification.findOne(q2)
-        if(!exists) return interaction.followUp('(2)Invalid captcha! Please try click verify button on that server again!')
+        if(!exists) return interaction.followUp('Invalid captcha! Please try click verify button on that server again!')
         
         const roleId = exists.roleId
         const guild = client.guilds.cache.get(exists1.guildId)

@@ -4,7 +4,7 @@ const Verification = require('../../models/Verification')
 
 module.exports = {
   name: 'verification-setup',
-  category: '👮‍♂️Moderation',
+  category: '🔑Management',
   description: 'Setup to avoid annoying bot!',
   options: [
     {
@@ -16,6 +16,7 @@ module.exports = {
                 name: 'channel',
                 description: 'The channel where the verification will be sent!',
                 type: ApplicationCommandOptionType.Channel,
+                ChannelType: ChannelType.GuildText,
                 required: true
             },
             {
@@ -49,6 +50,7 @@ module.exports = {
                 name: 'channel',
                 description: 'The channel where the verification will be sent!',
                 type: ApplicationCommandOptionType.Channel,
+                ChannelType: ChannelType.GuildText,
                 required: true
             }
         ]
