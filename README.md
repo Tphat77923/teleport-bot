@@ -10,7 +10,11 @@ This is a bot can teleport anywhere to help any server setup, make fun and manag
 + ✅ Verification System
 + 🎟 Ticket System
 + More upgrade...
-## Installation
+# Installation
+## Method 1: Invite my bot
+You can install my bot to your server by click [Here](https://tphat77923.github.io/teleport/invite.html)
+
+## Method 2: Manual Installation
 + First step, clone the repository.
 ```bash
 git clone https://github.com/Tphat77923/teleport-bot.git
