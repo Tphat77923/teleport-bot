@@ -1,11 +1,12 @@
+const { bar } = require('../config.json')
 const pb = {
-    le: '<:LE:1274207822602698773>',
-    me: '<:ME:1274207854974472202>',
-    re: '<:RE:1274207883944525865>',
-    lf: '<:LF:1274207839287644311>',
-    mf: '<:MF:1274207868807155807>',
-    rf: '<:RF:1274207897525551126>',
-  };
+  le: bar[0].le,
+  me: bar[0].me,
+  re: bar[0].re,
+  lf: bar[0].lf,
+  mf: bar[0].mf,
+  rf: bar[0].rf,
+};
   
   function formatResults(upvotes = [], downvotes = []) {
     const totalVotes = upvotes.length + downvotes.length;

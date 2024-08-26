@@ -22,10 +22,14 @@ module.exports = {
   
       const Rads = Reds[Math.floor(Math.random() * Reds.length)];
   
-      const res = await fetch(`https://www.reddit.com/r/${Rads}/random/.json`);
+      const res = await fetch(`https://www.reddit.com/r/${Rads}/random/.json`,{
+        headers: {
+          'User-Agent': 'teleport bot (tphat779231576@gmail.com)'
+        }
+        
+      });
   
       const json = await res.json();
-      console.log(json)
   
       if (!json[0]) {
         interaction.reply('Your Life Lmfao');
