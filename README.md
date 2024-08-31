@@ -25,7 +25,7 @@ git clone https://github.com/Tphat77923/teleport-bot.git
 npm i 
 ```
 
-+ Step 3, get a bot token from [Discord's developer portal](https://discord.com/developers/applications), api key of [mongodb](https://www.mongodb.com/), [gemini](https://aistudio.google.com), rename .env.txt to .env and set it into the enviroment variable.
++ Step 3, get a bot token from [Discord's developer portal](https://discord.com/developers/applications), api key of [mongodb](https://www.mongodb.com/), [gemini](https://aistudio.google.com), rename `.env.txt` to `.env` and set it into the enviroment variable.
 ```bash
 TOKEN: <your bot token>
 DBKEY: <your mongodb api key>
