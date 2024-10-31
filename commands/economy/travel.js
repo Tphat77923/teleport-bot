@@ -70,7 +70,7 @@ module.exports = {
 
           const currentDate = new Date();
 
-          const cooldownTime = 1 * 60 * 60 * 1000; // 1 hours in milliseconds
+          const cooldownTime = 2700000; // 45 min in milliseconds
 
   
 
@@ -78,10 +78,9 @@ module.exports = {
 
             interaction.editReply(
 
-              `You've already travel recently. Come back in ${Math.round((cooldownTime - (currentDate - lasttravelDate)) / 1000)} seconds!`
+              `You've already travel recently. Come back in ${Math.round((cooldownTime - (currentDate - lasttravelDate)) /60 / 1000)} minutes!`
 
             );
-
             return;
 
           }
@@ -113,7 +112,7 @@ module.exports = {
     const arrivalEmbed = new EmbedBuilder()
       .setColor('#cb05f7')
       .setTitle(`You have arrived in ${destination.name}!`)
-      .setDescription(`You can mine random items here. You will receive a random quantity of items in 30 minutes.`)
+      .setDescription(`You can mine random items here. You will receive a random quantity of items in 5 minutes.`)
       .setFooter({text:`You are now in ${destination.name}`})
       .setTimestamp();
 
@@ -132,9 +131,13 @@ module.exports = {
       let totalCoins = minedItems.reduce((acc, { item, quantity }) => acc + item.sellPrice * quantity, 0);
 
       // add the coins to the user's balance
+        let doublemsg = " "
       const currentDate = new Date();
       const lastbeaconDate = user.lastbeacon;
-      if (lastbeaconDate && currentDate - lastbeaconDate < 3600000) totalCoins*=2
+      if (lastbeaconDate && currentDate - lastbeaconDate < 3600000) {
+          totalCoins*=2
+          doublemsg = `(Your ${coinemoji} has been doubled by enderbeacon)`
+      } ;
       user.balance += totalCoins;
       await user.save();
 
@@ -145,7 +148,7 @@ module.exports = {
       const mineEmbed = new EmbedBuilder()
         .setColor('#cb05f7')
         .setTitle(`You have mined a bunch of items!`)
-        .setDescription(`You earned **${totalCoins}** ${coinemoji}! Your new balance is **${userData.balance}** coins.`)
+        .setDescription(`You earned **${totalCoins}** ${coinemoji}!${doublemsg}`)
         .addFields([
           { name: 'Items Mined:', value: itemsMinedList, inline: false }
         ])
@@ -153,6 +156,6 @@ module.exports = {
         .setTimestamp();
 
       interaction.followUp({ embeds: [mineEmbed] });
-    }, 30*60*1000); // 30 minutes
+    },300000); // 15 minutes
   }
 }

@@ -1,8 +1,9 @@
 const { Client, Interaction, ApplicationCommandOptionType ,EmbedBuilder } = require('discord.js');
 const User = require('../../models/User');
 const { coinemoji, items } = require('../../config.json');
+const usetimeSword = 300000
 const usetime = 3600000
-const pmin = 1 * 60 * 1000
+const pmin = 60*1000
 
 module.exports = {
     name: 'use-item',
@@ -69,14 +70,14 @@ module.exports = {
                 return;
             }
             const lastswordDate = user.lastsword;
-            if (lastswordDate && currentDate - lastswordDate < usetime) return interaction.reply(`Your sword is in use. Disabled in ${Math.round((usetime - (currentDate - lastswordDate)) /60 / 1000)} minutes`)
+            if (lastswordDate && currentDate - lastswordDate < usetimeSword) return interaction.reply(`Your sword is in use. Disabled in ${Math.round((usetimeSword - (currentDate - lastswordDate)) /60 / 1000)} minutes`)
             user.sword -= 1;
             user.lastsword = Date.now()
             await user.save();
-            interaction.reply(`You used ${items[0].esword} for 30 min auto farming`);
+            interaction.reply(`You used ${items[0].esword} for 5 min auto farming`);
             let totalEnderpeals = 0;
             let intervalId = setInterval(async () => {
-                const mobsKilled = Math.floor(Math.random() * (10 - 3 + 1)) + 3; // 3 to 10 mobs per minute
+                const mobsKilled = Math.floor(Math.random() * (15 - 5 + 1)) + 5; // 3 to 10 mobs per minute
                 const enderpealsPerMob = Math.floor(Math.random() * (3 - 1 + 1)) + 1; // 1 to 3 enderpeals per mob
                 totalEnderpeals += mobsKilled * enderpealsPerMob;
             }, pmin ); // every minute
@@ -86,7 +87,7 @@ module.exports = {
                 user.balance += totalEnderpeals;
                 await user.save();
                 interaction.followUp(`Your sword has finished autofarming! You earned a total of ${totalEnderpeals} ${coinemoji} enderpeals and they have been added to your balance.`);
-            }, usetime);
+            }, usetimeSword);
             }
 
         //beacon items
