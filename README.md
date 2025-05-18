@@ -1,5 +1,6 @@
 # Teleport discord Bot
 ![](https://api.checklyhq.com/v1/badges/checks/5a21e47c-e4a1-46a3-8c0e-d64006886cb1?style=flat&theme=default&responseTime=true)
+
 This is a bot can teleport anywhere to help any server setup, make fun and manage your discord server
 # Feautures
 + 👮‍♂️Moderation management
